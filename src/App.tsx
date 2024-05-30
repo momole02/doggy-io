@@ -52,7 +52,7 @@ function App() {
       <p className="text-center text-4xl py-10">Our beautiful Dogs !</p>
       <div className="grid grid-cols-3 gap-1">
         {selectedDogs.map((item) => (
-          <div className="m-10 bg-yellow-400 p-[24px] flex items-center">
+          <div className="m-10 bg-yellow-400 p-[24px] h-min flex items-center">
             <img style={{width: "500px"}} src={item}/>
           </div>))
           }
