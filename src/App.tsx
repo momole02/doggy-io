@@ -18,6 +18,8 @@ import dog16 from "./assets/dogs/dog16.jpg";
 import './App.css'
 import { useEffect, useState } from "react";
 import { randomPick } from "./utils/utils";
+import LCGenerator from "./utils/lc-generator";
+
 
 
 const dogImages = [
@@ -40,19 +42,28 @@ function Navbar(){
 function App() {
 
   const [selectedDogs, setSelectedDogs] = useState<Array<string>>([])
+  const [degs, setDegs] = useState<Array<string>>([])
 
+  
   useEffect(() => {
     const items = randomPick(dogImages, 3)
-    console.log({items})
+    // chaque 20 sec on change la disposition
+    const period =  30 * 1000;
+    const seed = Math.floor(new Date().getTime() / period); 
+    const lcg = new LCGenerator(seed);
+    const initialDegs = Array.from({length:3}, () => (10 * lcg.rangeRel(-3, 3))+"deg");
+    setDegs(initialDegs);
     setSelectedDogs(items);
   }, [])
+
+  
   return (
     <div>
       <Navbar/>
       <p className="text-center text-4xl py-10">Our beautiful Dogs !</p>
       <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-1">
-        {selectedDogs.map((item) => (
-          <div className="m-10 bg-yellow-400 p-[24px] h-min flex items-center">
+        {selectedDogs.map((item, index) => (
+          <div className={`m-10 bg-yellow-400 p-[24px] h-min flex items-center shadow-md`} style={{transform:`rotate(${degs[index]})`}}>
             <img style={{width: "500px"}} src={item}/>
           </div>))
           }
