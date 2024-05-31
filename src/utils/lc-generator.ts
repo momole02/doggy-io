@@ -34,4 +34,17 @@ export default class LCGenerator {
     const min = Math.min(start, end);
     return min + (this.nextInt() % (1 + max - min));
   }
+
+  rangeRel(start: number, end: number) {
+    const max = Math.max(start, end);
+    const min = Math.min(start, end);
+    const d = min < 0 ? -min : 0;
+    if(d + min != 0){ 
+      // min est positif, donc les deux sont positifs
+      // on utilise le range de base
+      return min + (this.nextInt() % (1 + max - min));
+    } else { 
+      return this.nextInt() % (1 + d + max) - d;
+    }
+  }
 }
