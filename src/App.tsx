@@ -32,9 +32,9 @@ const dogImages = [
 
 function Navbar(){
   
-  return (<div className='border-b-4 border-b-black w-full flex items-center p-4'>
+  return (<div className='bg-yellow-400 drop-shadow-md w-full flex items-center p-3'>
     <img style={{width:"64px"}} src={pawLogo}></img>
-    <span className="text-4xl font-bold pl-3">Doggy</span>
+    <span className="text-3xl text-white font-bold pl-3">Doggy</span>
   </div>)
 }
 function App() {
@@ -50,7 +50,7 @@ function App() {
     <div>
       <Navbar/>
       <p className="text-center text-4xl py-10">Our beautiful Dogs !</p>
-      <div className="grid grid-cols-3 gap-1">
+      <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-1">
         {selectedDogs.map((item) => (
           <div className="m-10 bg-yellow-400 p-[24px] h-min flex items-center">
             <img style={{width: "500px"}} src={item}/>

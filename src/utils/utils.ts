@@ -19,11 +19,15 @@ export function randomPick<T>(from: Array<T>, n: number) {
     length: from.length
   } , (_: number, index: number) => from[index])
 
+
+  // On le melange
   for(let i=0; i <= copy.length - 1  ; ++i){
     const j = lcg.range(i, copy.length - 1);
     const tmp = copy[i];
     copy[i] = copy[j];
     copy[j] = tmp; 
   }
+
+  // On retourne les n dernière valeures du tableau mélangé
   return copy.slice(-n);
 }
